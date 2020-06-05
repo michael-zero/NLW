@@ -1,0 +1,14 @@
+{
+	"name": "Mercado da Tiúba",
+	"email": "contato@tiuba.com.br",
+	"whatsapp": "988523697",
+	"latitude": -46.81273213,
+	"longitude": -35.19238112,
+	"city": "Timon",
+	"uf": "MA",
+	"items": [
+		1,
+		2,
+		6
+	]
+}

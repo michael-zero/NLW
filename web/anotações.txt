@@ -1,0 +1,6 @@
+============ 03/06 React ====================
+npm install leaflet react-leaflet > uso de mapas
+axios : npm install axios : biblioteca para fazer requisições a nossa api
+react dropzone : cria caixa pra jogar arquivos
+yup: validação - web
+backend : celebrate(integra bem com o express) ou joi

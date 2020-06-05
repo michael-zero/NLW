@@ -1,0 +1,45 @@
+import express, { request, response } from 'express';
+
+const app = express();
+app.use(express.json()); //o express por padrão não entende o JSON, por isso eu adiciono essa funcionalidade.
+
+const users = ['Nádia','Jozy','Elson', 'Flavia', 'Thompson'];
+
+//Listar usuários 
+app.get('/users', (request, response) => {
+    return response.json(users)
+})
+
+//filtrar com query param
+app.get('/users', (request, response) => {
+    const buscar = String(request.query.buscar);//forcei para ser String, pois os
+    //query params podem ser um array
+    
+
+    const usuariosFiltrados = buscar ? users.filter( user => user.includes(buscar)) : users;
+    
+    return response.json(usuariosFiltrados);
+})
+
+//Buscar usuário pelo id
+app.get('/users/:id', (request, response) =>{
+    const id = Number(request.params.id); 
+    const user = users[id];
+    response.json(user);
+});
+
+//criar usuário
+app.post('/users', (request, response) => {
+    const data = request.body;
+
+    console.log(data);
+
+    const user = {
+        nome: data.nome,
+        email: data.email
+    }
+
+    return response.json(user);
+})
+
+app.listen(3333);

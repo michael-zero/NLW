@@ -1,0 +1,7 @@
+$ StatusBar - deixa preto
+$ Fragment é uma div que não produz resultados.
+$ expo install react-native-maps
+$ expo install react-native-svg
+$ expo install expo-location
+$ expo install expo-mail-composer
+$ picker-select

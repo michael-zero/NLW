@@ -1,0 +1,137 @@
+// Introdução (Back-end e CONCEITOS)  01/06/2020
+
+#=============
+uploads de imagem: npm install multer
+filefilter no multer : .pdf , jpg ...
+#=====================================
+
+${INSTALAÇÕES}
+
+* crie uma pasta server e execute os códigos para instalação!
+
+1. npm init -y : configurações do server como padrão e inicializa o proj.
+package.json contém as informações principais do projeto.
+
+2. npm install typescript -D , instalação do typescript
+
+3. npx tsc --init : cria um arquivo de configurações do typescript
+
+4. npm install ts-node -D: como o node só "entende" JS, instalamos esta dependência
+para ser possível a execução. Com o -D porque só será utilizado enquanto estiver desenvolvendo a aplicação.
+
+5. npm install express -D: para ser possível trabalhar com rotas.
+app.use(express.json())//o express por padrão não entende o JSON, por isso eu adiciono essa funcionalidade.
+
+
+
+node_modules: armazena as dependências
+a. -D dependência de desenvolvimento
+b. npx - executar um pacote instalado
+
+c. npm install ts-node-dev -D: para não ter que ficar reiniciando o servidor a todo momento com o CTRL + C,
+ele ficará observando a todo momento as mudanças na app. 
+
+/**Forma de executar agora: ts-node-dev src/server.ts 
+
+    como esse code é longo: {
+        1. vai no arquivo package.json e em scripts e coloca:
+        "dev" : "ts-node-dev src/server.ts", DAÍ
+        basta executar => npm run dev 
+        obs: dev é o nome dado lá no script
+    }
+
+**/
+
+d. npx ts-node src/server.ts : para executar a aplicação
+
+
+${CONCEITOS}:
+
+1. request: recebe os dados de uma requisição. 
+ex: criação de um usuário.. teria NOME, EMAIL, SENHA.. etc, :3
+
+2. response: devolver uma resposta. EX: browser ou qualquer outra aplicação;
+
+
+REACT: bib p/ construção de interfaces.
+
+1. SPA (Single-Page Applications) > muda somente o que precisa, não precisa recarregar todo conteúdo do 0.
+
++ Vantagens : 
+
+   Org. do código, 
+   Componetização, 
+   * Divisão de responsabilidades: {
+       a. back-end  -> regra do negócio, 
+       b. front-end -> interface
+   }
+
+
+${CODE} : 
+1. npx create-react-app web --template=typescript , criar a aplicação react 
+apropriada para o typescript.
+
+no terminal: npm start,  para rodar
+
+
+// =========================== 02/06/2020 BACK-END =============================== //
+
+Rota: Endereço completo da req.
+Recurso: Qual entidade estamos acessando do sistema.
+
+como o browser só entender métodos get, utiliza-se o insomnia
+para testar os métodos: post, put, delete ... 
+
+{EX inicial}: 
+
+/**
+    app.post('/users', (request, response) => {
+        const user = {
+            name: 'mike',
+            email: 'mlmb@hotmail.com.br'
+        }
+
+        return response.json(user);
+    })
+
+    app.listen(3333);
+
+ NO INSOMNIA 
+
+    POST - htpp://localhost/users
+
+
+**/
+
+//==================== Parâmetros
+.get('/users/:id')
+const id = Number(request.params.id);
+recebendo os parâmetros enviados por rotas;
+
+//====================
+
+{Request Param}  (Maioria das x é obrigatório) : parametros que vem na propria rota q identificam um Recurso
+
+{Query Param (?)} : parametros opcionais que vem na própria rota,
+geralmente opcionais para filtros, paginação .. ex: http://localhost:3333/users?buscar=on
+
+{Request Body} : parâmetros para criação/ atualização de informações
+
+//=========================================
+Knex (query builder) e SQLite
+
+knex: trabalhar com bd ainda usando JS e não precisa utilizar a linguagem sql e ele adapta pra qualquer banco, 
+SQlite pq n precisa instalar nada, cria um arquivo.
+
+1. npm install knex 
+2. npm install sqlite3
+
+
+Migrations : histórico do banco de dados
+UP -> criar a tabela 
+DOWN -> voltar atrás, deletar a tabela.
+
+apos tudo... criado as Migrations e criado o arquivo knexfile.ts na raiz...
+exectua : npx knex migrate:latest --knexfile knexfile.ts migrate:latest
+
+seeds: servem para padronizar nossa base de dados com alguns dados padrões.
